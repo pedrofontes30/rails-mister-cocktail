@@ -1,0 +1,16 @@
+<div>
+  <h2><%= @cocktail.name %></h2>
+  <% @doses.each do |dose| %>
+    <%= dose.description %> of <%= Ingredient.find(dose.ingredient_id)['name'] %> <%= link_to 'Delete', dose_path(dose.id), method: :delete %>
+  <% end %>
+  <%= link_to 'Add dose', new_cocktail_dose_path(@cocktail.id)%>
+</div>
+
+<% @reviews.each do |review| %>
+    <%= review.rating %> - <%= review.content %>
+<% end %>
+<%= simple_form_for [ @cocktail, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit %>
+<% end %>
