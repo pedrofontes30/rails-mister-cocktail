@@ -1,10 +1,10 @@
 <div class="text-center mt-3">
   <h2><%= @cocktail.name %></h2>
 </div>
-<div class="row justify-content-center pt-3 pb-5 border-bottom">
-  <div style="background-image: url(https://source.unsplash.com/random/300x200/?<%=@cocktail.name.downcase.gsub(' ','-')%>);" class="col-6 p-0 card-cocktail-img">
+<div class="row justify-content-center pt-3 pb-5 px-3 border-bottom">
+  <div style="background-image: url(https://source.unsplash.com/random/300x200/?<%=@cocktail.name.downcase.gsub(' ','-')%>);" class="col-12 col-sm-6 col-lg-4 p-0 card-cocktail-img">
   </div>
-  <div class="col-6 p-0">
+  <div class="col-12 col-sm-6 col-lg-4 p-0">
     <div class="card card-cocktail px-3">
     <% @doses.each do |dose| %>
         <div class="border-bottom py-2">
