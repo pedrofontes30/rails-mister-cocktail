@@ -1,16 +1,61 @@
-<div>
+<div class="text-center mt-3">
   <h2><%= @cocktail.name %></h2>
-  <% @doses.each do |dose| %>
-    <%= dose.description %> of <%= Ingredient.find(dose.ingredient_id)['name'] %> <%= link_to 'Delete', dose_path(dose.id), method: :delete %>
-  <% end %>
-  <%= link_to 'Add dose', new_cocktail_dose_path(@cocktail.id)%>
+</div>
+<div class="row justify-content-center pt-3 pb-5 border-bottom">
+  <div style="background-image: url(https://source.unsplash.com/random/300x200/?<%=@cocktail.name.downcase.gsub(' ','-')%>);" class="col-6 p-0 card-cocktail-img">
+  </div>
+  <div class="col-6 p-0">
+    <div class="card card-cocktail px-3">
+    <% @doses.each do |dose| %>
+        <div class="border-bottom py-2">
+          <%= dose.description %> of <%= Ingredient.find(dose.ingredient_id)['name'] %> <%= link_to icon('fas', 'trash-alt'), dose_path(dose.id), method: :delete %>
+        </div>
+      <% end %>
+      <div class="py-2" data-toggle="modal" data-target="#doseModal" style="cursor: pointer;">
+        Add dose
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center py-3">
+  <div class="w-50">
+    <h4>Reviews</h4>
+    <% @reviews.each do |review| %>
+      <div class="py-3 border-bottom">
+        <div class="d-flex justify-content-between">
+          <div class="font-italic"><%= review.content %></div>
+          <div><%= review.rating %><span class='font-small'>/5</span></div>
+        </div>
+        <div class='opacity-5'>
+          <%= review.created_at.strftime('%D') %>
+        </div>
+      </div>
+    <% end %>
+    <%= simple_form_for [ @cocktail, @review ] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :rating %>
+      <%= f.submit 'Add review', class: "btn btn-secondary" %>
+    <% end %>
+  </div>
 </div>
 
-<% @reviews.each do |review| %>
-    <%= review.rating %> - <%= review.content %>
-<% end %>
-<%= simple_form_for [ @cocktail, @review ] do |f| %>
-  <%= f.input :content %>
-  <%= f.input :rating %>
-  <%= f.submit %>
-<% end %>
+<!-- Modal -->
+<div class="modal fade" id="doseModal" tabindex="-1" role="dialog" aria-labelledby="doseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="doseModalLabel">New dose</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [ @cocktail, @dose ] do |f| %>
+          <%= f.input :description %>
+          <%= f.association :ingredient %>
+          <%= f.submit 'Add', class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

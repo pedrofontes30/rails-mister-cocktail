@@ -13,6 +13,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="navbar navbar-expand-sm navbar-light navbar-lewagon border-bottom px-5">
+      <%= link_to cocktails_path, class: "navbar-brand" do %>
+        <%= image_tag "https://image.flaticon.com/icons/png/512/38/38706.png" %>
+      <% end %>
+      <button type="button" class="btn btn-outline-secondary">
+        <%= link_to 'Create cocktail', new_cocktail_path %>
+      </button>
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

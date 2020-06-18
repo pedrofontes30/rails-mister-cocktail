@@ -8,6 +8,7 @@ class CocktailsController < ApplicationController
     @doses = Dose.where("cocktail_id = #{params[:id]}")
     @reviews = Review.where("cocktail_id = #{params[:id]}")
     @review = Review.new
+    @dose = Dose.new
   end
 
   def new
@@ -16,7 +17,7 @@ class CocktailsController < ApplicationController
 
   def create
     @cocktail = Cocktail.create(cocktail_params)
-    redirect_to cocktails_path
+    redirect_to cocktail_path(@cocktail)
   end
 
   private

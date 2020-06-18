@@ -17,8 +17,9 @@ JSON.parse(serialized_drinks)['drinks'].each do |ingredient|
   Ingredient.create!(name: ingredient['strIngredient1'])
 end
 
-Cocktail.create(name: 'Apple Martini')
-Cocktail.create(name: 'Cuba Libre')
-Cocktail.create(name: 'Sex on the beach')
 Cocktail.create(name: 'Gin and Tonic')
 Cocktail.create(name: 'Caipirinha')
+Cocktail.create(name: 'Martini')
+Cocktail.create(name: 'Pina Colada')
+Cocktail.create(name: 'Mojito')
+Cocktail.create(name: 'Bloody Mary')
