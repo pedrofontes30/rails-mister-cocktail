@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <% @cocktails.each do |cocktail| %>
     <div class="card card-cocktail m-3" style="width: 18rem;">
-      <div style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, height: 300, width: 400, crop: :fill %>')" class="card-cocktail-img">
+      <div style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, cloud_name: 'pedrosafontes', height: 300, width: 400, crop: :fill %>')" class="card-cocktail-img">
       </div>
       <div class="card-body text-center">
         <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail.id) %></h5>
