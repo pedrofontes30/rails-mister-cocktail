@@ -2,7 +2,7 @@
   <h2><%= @cocktail.name %></h2>
 </div>
 <div class="row justify-content-center pt-3 pb-5 px-3 border-bottom">
-  <div style="background-image: url(https://source.unsplash.com/random/300x200/?<%=@cocktail.name.downcase.gsub(' ','-')%>);" class="col-12 col-sm-6 col-lg-4 p-0 card-cocktail-img">
+  <div style="background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>')" class="col-12 col-sm-6 col-lg-4 p-0 card-cocktail-img">
   </div>
   <div class="col-12 col-sm-6 col-lg-4 p-0">
     <div class="card card-cocktail px-3">
